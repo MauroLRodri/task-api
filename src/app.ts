@@ -1,13 +1,17 @@
 import express from 'express';
+import { tasksRouter } from './routes/tasks.routes'; 
 
 const app = express();
 
-// Middleware para parsear JSON
+console.log('tasksRouter:', typeof tasksRouter, tasksRouter);
+
 app.use(express.json());
 
-// Health check
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.use(tasksRouter);
+
 export default app;
+
