@@ -26,3 +26,17 @@ export function createTaskHandler(req: Request, res: Response) {
     return res.status(500).json({ message: 'Internal server error'})
   }
 };
+
+export function listTasksHandler(req: Request, res: Response) {
+
+  try{
+    const includeArchived = req.query.includeArchived === 'true';
+    const tasks = tasksService.listTasks(includeArchived);
+
+    return res.status(201).json(tasks);
+
+  } catch (err) {
+    //Unexpected error
+    return res.status(500).json({ message: 'Internal server error'})
+  }
+}

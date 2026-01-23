@@ -20,5 +20,13 @@ export const tasksService = {
         return task
     },
 
-    // (Más adelante) getById, list, updateStatus, delete...
+    listTasks(includeArchived = false): Task[] {
+        
+        if (includeArchived) {
+            return tasks;
+        }
+        
+        return tasks.filter(task => task.status !== 'archived');
+    }
+
 };
