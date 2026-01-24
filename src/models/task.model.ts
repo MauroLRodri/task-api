@@ -1,5 +1,6 @@
 
-export type TaskStatus = 'todo' | 'in_progress' | 'done' | 'archived';
+export const TASK_STATUSES = ['todo', 'in_progress', 'done', 'archived'] as const;
+export type TaskStatus = (typeof TASK_STATUSES)[number];
 
 export type Task = {
     id: string;
